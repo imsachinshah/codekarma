@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#302b63"/>
+      <stop offset="100%" stop-color="#0f0c29"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" stop-color="#ff6a00"/>
+      <stop offset="60%" stop-color="#ff3d00"/>
+      <stop offset="100%" stop-color="#ffb347"/>
+    </linearGradient>
+    <linearGradient id="braceLeft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0a0c0"/>
+    </linearGradient>
+    <linearGradient id="braceRight" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0a0c0"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="128" height="128" rx="20" ry="20" fill="url(#bg)"/>
+
+  <!-- Yin-yang circular arrangement of braces -->
+  <!-- Left brace "{" positioned on the left arc -->
+  <text x="30" y="82" font-family="'Courier New', monospace" font-size="62" font-weight="bold" fill="url(#braceLeft)" transform="rotate(-20, 44, 68)">{</text>
+
+  <!-- Right brace "}" positioned on the right arc -->
+  <text x="62" y="76" font-family="'Courier New', monospace" font-size="62" font-weight="bold" fill="url(#braceRight)" transform="rotate(20, 84, 62)">}</text>
+
+  <!-- Yin-yang dots — small circles to reinforce the symbol -->
+  <circle cx="48" cy="54" r="4" fill="#f0a0c0" opacity="0.9"/>
+  <circle cx="80" cy="78" r="4" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Subtle circular outline to tie the yin-yang shape together -->
+  <circle cx="64" cy="66" r="34" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.15"/>
+
+  <!-- Flame accent at top center -->
+  <path d="M64,10 C64,10 58,22 60,28 C61,31 63,32 64,30 C64,32 66,34 68,31 C71,26 64,18 64,10 Z"
+        fill="url(#flame)" opacity="0.95"/>
+  <!-- Small inner flame -->
+  <path d="M64,16 C64,16 61,22 62.5,25 C63,26 64,26 64,25 C64,26 65,27 66,25 C67.5,22 64,18 64,16 Z"
+        fill="#ffdd57" opacity="0.9"/>
+</svg>

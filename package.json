@@ -1,0 +1,164 @@
+{
+  "name": "codekarma",
+  "displayName": "CodeKarma — Gamified Terminal + AI Roasts",
+  "description": "Track your terminal karma, earn ranks, break streaks, and get roasted when your commands fail. Shareable badge cards for social media.",
+  "version": "0.0.1",
+  "publisher": "imsachinshah",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "preview": true,
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "badges": [],
+  "markdown": "github",
+  "qna": "marketplace",
+  "extensionKind": [
+    "workspace"
+  ],
+  "keywords": [
+    "faaah",
+    "terminal",
+    "error",
+    "sound",
+    "karma",
+    "gamification",
+    "roast",
+    "fun",
+    "productivity"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "icon": "media/icons/codekarma.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codekarma.showDashboard",
+        "title": "CodeKarma: Open Dashboard"
+      },
+      {
+        "command": "codekarma.generateBadge",
+        "title": "CodeKarma: Generate Shareable Badge"
+      },
+      {
+        "command": "codekarma.resetKarma",
+        "title": "CodeKarma: Reset Karma"
+      },
+      {
+        "command": "codekarma.toggleSound",
+        "title": "CodeKarma: Toggle Sound Effects"
+      },
+      {
+        "command": "codekarma.setRoastLevel",
+        "title": "CodeKarma: Set Roast Level"
+      },
+      {
+        "command": "codekarma.showDailyReport",
+        "title": "CodeKarma: Show Daily Damage Report"
+      }
+    ],
+    "configuration": {
+      "title": "CodeKarma",
+      "properties": {
+        "codekarma.roastLevel": {
+          "type": "string",
+          "default": "medium",
+          "enum": [
+            "mild",
+            "medium",
+            "savage",
+            "desi"
+          ],
+          "enumDescriptions": [
+            "Gentle nudges — safe for work",
+            "Spicy but fair",
+            "No mercy. You asked for this.",
+            "Indian uncle energy — \"Log kya kahenge?\""
+          ],
+          "description": "How hard should CodeKarma roast you?"
+        },
+        "codekarma.soundEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Play sound effects on terminal errors"
+        },
+        "codekarma.soundEffect": {
+          "type": "string",
+          "default": "faaah",
+          "enum": [
+            "faaah",
+            "oof",
+            "bruh",
+            "vine_boom",
+            "windows_error"
+          ],
+          "description": "Which sound to play on error"
+        },
+        "codekarma.soundVolume": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Volume for sound effects (0.0 - 1.0)"
+        },
+        "codekarma.useAiRoasts": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use AI (OpenAI/Anthropic) for dynamic, context-aware roasts"
+        },
+        "codekarma.aiProvider": {
+          "type": "string",
+          "default": "openai",
+          "enum": [
+            "openai",
+            "anthropic"
+          ],
+          "description": "AI provider for dynamic roasts"
+        },
+        "codekarma.aiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for AI roast provider"
+        },
+        "codekarma.dailyReport": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show daily damage report notification"
+        },
+        "codekarma.badgeUsername": {
+          "type": "string",
+          "default": "",
+          "description": "Custom name for your badge card (defaults to git/OS username)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.93.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imsachinshah/codekarma.git"
+  },
+  "license": "MIT"
+}
