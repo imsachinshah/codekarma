@@ -10,12 +10,6 @@
 </p>
 
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=imsachinshah.codekarma">
-    <img src="https://img.shields.io/visual-studio-marketplace/v/imsachinshah.codekarma?label=VS%20Code%20Marketplace&color=blue" alt="VS Code Marketplace"/>
-  </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=imsachinshah.codekarma">
-    <img src="https://img.shields.io/visual-studio-marketplace/i/imsachinshah.codekarma?color=green" alt="Installs"/>
-  </a>
   <img src="https://img.shields.io/badge/roasts-120%2B-red" alt="Roasts"/>
   <img src="https://img.shields.io/badge/license-MIT-yellow" alt="License"/>
   <img src="https://img.shields.io/badge/vibe-immaculate-blueviolet" alt="Vibe"/>
