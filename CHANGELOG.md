@@ -5,6 +5,19 @@ All notable changes to the **CodeKarma** extension will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.2] - 2026-05-07
+
+### Fixed
+
+- **Extension not disabling properly** — Status bar and roast notifications continued showing even after disabling the extension. The extension now fully hides the status bar and stops processing terminal events when disabled.
+
+### Added
+
+- **Enable/Disable toggle** — New `codekarma.enabled` setting and `CodeKarma: Enable/Disable` command let you pause CodeKarma without uninstalling. Toggling via Settings UI also takes effect immediately.
+- **Demo GIF** — README now includes a live demo of the extension in action.
+
+---
+
 ## [0.0.1] - 2026-03-11
 
 ### Added
