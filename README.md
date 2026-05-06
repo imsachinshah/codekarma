@@ -239,10 +239,11 @@ code --install-extension codekarma-0.0.1.vsix
 
 | Setting | Type | Default | Description |
 |---|---|---|---|
-| `codekarma.roastLevel` | `string` | `mild` | Roast intensity: `mild`, `medium`, `savage`, `desi` |
+| `codekarma.enabled` | `boolean` | `true` | Enable or disable CodeKarma entirely |
+| `codekarma.roastLevel` | `string` | `medium` | Roast intensity: `mild`, `medium`, `savage`, `desi` |
 | `codekarma.soundEnabled` | `boolean` | `true` | Enable/disable sound effects on failures |
-| `codekarma.soundEffect` | `string` | `bruh` | Sound: `faaah`, `oof`, `bruh`, `vine_boom`, `windows_error` |
-| `codekarma.soundVolume` | `number` | `0.5` | Volume level (0 to 1) |
+| `codekarma.soundEffect` | `string` | `faaah` | Sound: `faaah`, `oof`, `bruh`, `vine_boom`, `windows_error` |
+| `codekarma.soundVolume` | `number` | `0.7` | Volume level (0 to 1) |
 | `codekarma.useAiRoasts` | `boolean` | `false` | Enable AI-generated roasts |
 | `codekarma.aiProvider` | `string` | `openai` | AI provider: `openai` or `anthropic` |
 | `codekarma.aiApiKey` | `string` | `""` | Your API key for AI roasts |
@@ -263,6 +264,7 @@ Open the Command Palette (`Ctrl+Shift+P`) and type `CodeKarma`:
 | `CodeKarma: Toggle Sound Effects` | Turns sounds on/off |
 | `CodeKarma: Set Roast Level` | Pick your pain threshold |
 | `CodeKarma: Show Daily Damage Report` | See today's summary |
+| `CodeKarma: Enable/Disable` | Toggle the extension on/off without uninstalling |
 
 ---
 
@@ -282,9 +284,11 @@ Because coding is already painful. Might as well make it **entertaining**.
 
 ---
 
-## 📸 Screenshots
+## 📸 Demo
 
-*Screenshots coming soon! Press `F5` in the extension folder to try it yourself.*
+![CodeKarma in action](media/screenshots/demo.gif)
+
+*Status bar tracking, roast notifications, and karma scoring — live in VS Code.*
 
 ---
 

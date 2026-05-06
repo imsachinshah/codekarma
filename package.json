@@ -63,6 +63,10 @@
       {
         "command": "codekarma.showDailyReport",
         "title": "CodeKarma: Show Daily Damage Report"
+      },
+      {
+        "command": "codekarma.toggle",
+        "title": "CodeKarma: Enable/Disable"
       }
     ],
     "configuration": {
@@ -137,6 +141,11 @@
           "type": "string",
           "default": "",
           "description": "Custom name for your badge card (defaults to git/OS username)"
+        },
+        "codekarma.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeKarma tracking and UI"
         }
       }
     }

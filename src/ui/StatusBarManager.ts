@@ -13,25 +13,32 @@ export class StatusBarManager {
     this.item.command = 'codekarma.showDashboard';
     this.item.tooltip = 'Click to open CodeKarma Dashboard';
     this.update();
-    this.item.show();
   }
 
   update(): void {
+    const enabled = vscode.workspace.getConfiguration('codekarma').get<boolean>('enabled', true);
+
+    if (!enabled) {
+      this.item.hide();
+      return;
+    }
+
     const data = this.store.get();
     const rank = this.rankSystem.getRank(data.score);
     const streakIcon = data.streak >= 5 ? '$(flame)' : '$(zap)';
 
     this.item.text = `${rank.emoji} ${data.score} | ${streakIcon} ${data.streak} | ${rank.name}`;
 
-    // Color based on recent performance
     if (data.streak >= 10) {
       this.item.backgroundColor = undefined;
-      this.item.color = '#4ade80'; // green
+      this.item.color = '#4ade80';
     } else if (data.streak === 0 && data.totalCommands > 0) {
-      this.item.color = '#f87171'; // red
+      this.item.color = '#f87171';
     } else {
       this.item.color = undefined;
     }
+
+    this.item.show();
   }
 
   dispose(): void {

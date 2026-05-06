@@ -27,26 +27,24 @@ export function activate(context: vscode.ExtensionContext) {
   // Start daily report scheduler
   scheduler.start();
 
+  const isEnabled = () =>
+    vscode.workspace.getConfiguration('codekarma').get<boolean>('enabled', true);
+
   // Main event loop: terminal command → karma → UI updates
   const commandListener = terminalWatcher.onCommandResult(async (result) => {
+    if (!isEnabled()) return;
+
     const event = await karmaEngine.processCommand(result);
 
-    // Update status bar
     statusBar.update();
-
-    // Refresh dashboard if open
     DashboardPanel.refresh(store, rankSystem);
 
     if (!result.success) {
-      // Play error sound
       soundPlayer.playError();
-
-      // Get and show roast
       const roast = await roastEngine.getRoast(result.command, result.exitCode);
       notifications.showRoast(roast, event);
     }
 
-    // Check rank changes
     if (event.rankChanged) {
       if (event.newRank.minScore > (event.oldRank?.minScore ?? 0)) {
         soundPlayer.playLevelUp();
@@ -56,10 +54,16 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
 
-    // Check streak milestones
     if (result.success && [5, 10, 25, 50, 100].includes(event.streak)) {
       soundPlayer.playStreak();
       notifications.showStreakMilestone(event.streak);
+    }
+  });
+
+  // Re-render status bar when enabled/disabled via settings
+  const configListener = vscode.workspace.onDidChangeConfiguration((e) => {
+    if (e.affectsConfiguration('codekarma.enabled')) {
+      statusBar.update();
     }
   });
 
@@ -115,9 +119,19 @@ export function activate(context: vscode.ExtensionContext) {
     notifications.showDailyReport();
   });
 
+  const toggle = vscode.commands.registerCommand('codekarma.toggle', async () => {
+    const config = vscode.workspace.getConfiguration('codekarma');
+    const current = config.get<boolean>('enabled', true);
+    await config.update('enabled', !current, vscode.ConfigurationTarget.Global);
+    vscode.window.showInformationMessage(
+      `CodeKarma: ${!current ? 'Enabled' : 'Disabled'}`,
+    );
+  });
+
   // Push all disposables
   context.subscriptions.push(
     commandListener,
+    configListener,
     terminalWatcher,
     karmaEngine,
     statusBar,
@@ -128,6 +142,7 @@ export function activate(context: vscode.ExtensionContext) {
     toggleSound,
     setRoastLevel,
     showDailyReport,
+    toggle,
   );
 
   console.log('CodeKarma activated! May the karma be with you.');
