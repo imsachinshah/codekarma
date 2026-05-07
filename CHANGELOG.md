@@ -5,6 +5,14 @@ All notable changes to the **CodeKarma** extension will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.4] - 2026-05-07
+
+### Fixed
+
+- **Sound persists when extension is disabled (definitive fix)** — Previous approach of checking the `enabled` config inside the event callback was unreliable. The terminal listener is now fully detached when the extension is disabled and reattached when re-enabled, making it impossible for sounds or roasts to trigger in a disabled state.
+
+---
+
 ## [0.0.3] - 2026-05-07
 
 ### Fixed

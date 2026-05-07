@@ -31,40 +31,46 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.workspace.getConfiguration('codekarma').get<boolean>('enabled', true);
 
   // Main event loop: terminal command → karma → UI updates
-  const commandListener = terminalWatcher.onCommandResult(async (result) => {
-    if (!isEnabled()) return;
+  function attachCommandListener(): vscode.Disposable {
+    return terminalWatcher.onCommandResult(async (result) => {
+      const event = await karmaEngine.processCommand(result);
 
-    const event = await karmaEngine.processCommand(result);
+      statusBar.update();
+      DashboardPanel.refresh(store, rankSystem);
 
-    if (!isEnabled()) return;
-
-    statusBar.update();
-    DashboardPanel.refresh(store, rankSystem);
-
-    if (!result.success) {
-      soundPlayer.playError();
-      const roast = await roastEngine.getRoast(result.command, result.exitCode);
-      notifications.showRoast(roast, event);
-    }
-
-    if (event.rankChanged) {
-      if (event.newRank.minScore > (event.oldRank?.minScore ?? 0)) {
-        soundPlayer.playLevelUp();
-        notifications.showRankUp(event);
-      } else {
-        notifications.showRankDown(event);
+      if (!result.success) {
+        soundPlayer.playError();
+        const roast = await roastEngine.getRoast(result.command, result.exitCode);
+        notifications.showRoast(roast, event);
       }
-    }
 
-    if (result.success && [5, 10, 25, 50, 100].includes(event.streak)) {
-      soundPlayer.playStreak();
-      notifications.showStreakMilestone(event.streak);
-    }
-  });
+      if (event.rankChanged) {
+        if (event.newRank.minScore > (event.oldRank?.minScore ?? 0)) {
+          soundPlayer.playLevelUp();
+          notifications.showRankUp(event);
+        } else {
+          notifications.showRankDown(event);
+        }
+      }
 
-  // Re-render status bar when enabled/disabled via settings
+      if (result.success && [5, 10, 25, 50, 100].includes(event.streak)) {
+        soundPlayer.playStreak();
+        notifications.showStreakMilestone(event.streak);
+      }
+    });
+  }
+
+  let commandListener: vscode.Disposable | null = isEnabled() ? attachCommandListener() : null;
+
+  // Detach/reattach listener when enabled/disabled — no config reads in the hot path
   const configListener = vscode.workspace.onDidChangeConfiguration((e) => {
     if (e.affectsConfiguration('codekarma.enabled')) {
+      if (isEnabled()) {
+        commandListener = commandListener ?? attachCommandListener();
+      } else {
+        commandListener?.dispose();
+        commandListener = null;
+      }
       statusBar.update();
     }
   });
@@ -132,7 +138,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Push all disposables
   context.subscriptions.push(
-    commandListener,
+    { dispose: () => commandListener?.dispose() },
     configListener,
     terminalWatcher,
     karmaEngine,
