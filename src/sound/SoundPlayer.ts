@@ -11,6 +11,7 @@ export class SoundPlayer {
 
   play(soundName: string): void {
     const config = vscode.workspace.getConfiguration('codekarma');
+    if (!config.get<boolean>('enabled', true)) return;
     if (!config.get<boolean>('soundEnabled', true)) return;
 
     const soundFile = path.join(this.extensionPath, 'media', 'sounds', `${soundName}.mp3`);

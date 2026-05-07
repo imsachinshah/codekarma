@@ -36,6 +36,8 @@ export function activate(context: vscode.ExtensionContext) {
 
     const event = await karmaEngine.processCommand(result);
 
+    if (!isEnabled()) return;
+
     statusBar.update();
     DashboardPanel.refresh(store, rankSystem);
 
