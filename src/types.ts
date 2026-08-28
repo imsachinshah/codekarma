@@ -24,7 +24,7 @@ export interface CommandResult {
   timestamp: number;
 }
 
-export type RoastLevel = 'mild' | 'medium' | 'savage' | 'desi';
+export type RoastLevel = 'mild' | 'medium' | 'savage' | 'desi' | 'spanish' | 'french';
 
 export interface Rank {
   name: string;

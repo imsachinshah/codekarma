@@ -113,6 +113,8 @@ export function activate(context: vscode.ExtensionContext) {
         { label: '🌶️ Medium', description: 'Spicy but fair', value: 'medium' },
         { label: '💀 Savage', description: 'No mercy. You asked for this.', value: 'savage' },
         { label: '🇮🇳 Desi', description: 'Indian uncle energy — "Log kya kahenge?"', value: 'desi' },
+        { label: '🇪🇸 Spanish', description: 'Telenovela levels of dramatic disappointment', value: 'spanish' },
+        { label: '🇫🇷 French', description: 'Condescending Parisian developer vibes', value: 'french' },
       ],
       { placeHolder: 'How hard should CodeKarma roast you?' },
     );
