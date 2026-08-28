@@ -14,6 +14,8 @@ export class AiRoastProvider {
       medium: 'sarcastic and witty, like a friend roasting you',
       savage: 'absolutely brutal, no mercy, devastating burn',
       desi: 'in Hinglish (Hindi-English mix), like a disappointed Indian uncle/aunty or friend. Use Hindi slang and cultural references',
+      spanish: 'in Spanish, dramatic and exaggerated like a telenovela character, highly emotional about the failure',
+      french: 'in French, highly condescending and arrogant, acting like the code offends their refined sensibilities',
     };
 
     const prompt = `You are a coding roast bot. A developer just ran this terminal command and it FAILED:

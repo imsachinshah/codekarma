@@ -79,13 +79,17 @@
             "mild",
             "medium",
             "savage",
-            "desi"
+            "desi",
+            "spanish",
+            "french"
           ],
           "enumDescriptions": [
             "Gentle nudges — safe for work",
             "Spicy but fair",
             "No mercy. You asked for this.",
-            "Indian uncle energy — \"Log kya kahenge?\""
+            "Indian uncle energy — \"Log kya kahenge?\"",
+            "Telenovela levels of dramatic disappointment",
+            "Condescending Parisian developer vibes"
           ],
           "description": "How hard should CodeKarma roast you?"
         },
